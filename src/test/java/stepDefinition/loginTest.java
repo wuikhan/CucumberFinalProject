@@ -28,7 +28,6 @@ public class loginTest {
 	public void i_should_see_logo() {
 		boolean logoPresent = driver.findElement(By.id("logo")).isDisplayed();
 		assertEquals(logoPresent, true);
-
 	}
 
 	@Then("^I enter username$")
