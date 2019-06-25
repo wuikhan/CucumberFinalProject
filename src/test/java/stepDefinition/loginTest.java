@@ -15,9 +15,17 @@ public class loginTest {
 
 	@Given("^I open firefox browser$")
 	public void i_open_firefox_browser() {
+		String OS = System.getProperty("os.name").toLowerCase();
+		System.out.println(OS);
+		if(OS.equals("mac os x")) {
 		System.out.println(System.getProperty("user.dir"));
-		System.setProperty("webdriver.chrome.driver", System.getProperty("user.dir")+"/Drivers/chromedriver");
+		System.setProperty("webdriver.chrome.driver", System.getProperty("user.dir")+"/Drivers/chromedriver-mac");
 		driver = new ChromeDriver();
+		} else {
+			System.out.println(System.getProperty("user.dir"));
+			System.setProperty("webdriver.chrome.driver", System.getProperty("user.dir")+"/Drivers/chromedriver-win.exe");
+			driver = new ChromeDriver();
+		}
 	}
 
 	@When("^I go to the homepage$")
