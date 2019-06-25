@@ -6,11 +6,6 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 
-import com.aventstack.extentreports.ExtentReports;
-import com.aventstack.extentreports.ExtentTest;
-import com.aventstack.extentreports.Status;
-import com.aventstack.extentreports.reporter.ExtentHtmlReporter;
-import com.aventstack.extentreports.reporter.configuration.Theme;
 
 import cucumber.api.java.en.Given;
 import cucumber.api.java.en.Then;
@@ -24,11 +19,9 @@ public class loginTest {
 		String OS = System.getProperty("os.name").toLowerCase();
 		System.out.println(OS);
 		if (OS.equals("mac os x")) {
-			System.out.println(System.getProperty("user.dir"));
 			System.setProperty("webdriver.chrome.driver", System.getProperty("user.dir") + "/Drivers/chromedriver-mac");
 			driver = new ChromeDriver();
 		} else {
-			System.out.println(System.getProperty("user.dir"));
 			System.setProperty("webdriver.chrome.driver",
 					System.getProperty("user.dir") + "/Drivers/chromedriver-win.exe");
 			driver = new ChromeDriver();
@@ -75,27 +68,22 @@ public class loginTest {
 		driver.close();
 	}
 
-@Then("^I generate the report$")
-public void i_generate_the_report()  {
-	ExtentHtmlReporter report = new ExtentHtmlReporter("./Reports/AutomationScript.html");
-	report.config().setDocumentTitle("Waqas");
-	report.config().setReportName("Cucumber Maven Project");
-	report.config().setTheme(Theme.STANDARD);
-	
-	ExtentReports extent = new ExtentReports();
-	extent.attachReporter(report);
-	extent.setSystemInfo("Application", "Class");
-	extent.setSystemInfo("Operating System", System.getProperty("os.name"));
-	extent.setSystemInfo("User Name", System.getProperty("user.name"));
-
-	ExtentTest logger = extent.createTest("Login Test");
-	logger.log(Status.INFO, "login to Salesforce");
-	logger.log(Status.PASS, "login Verified");
-	extent.flush();
-}
-
-
-
-
-
+//	@Then("^I generate the report$")
+//	public void i_generate_the_report() {
+//		ExtentHtmlReporter report = new ExtentHtmlReporter("./Reports/AutomationScript.html");
+//		report.config().setDocumentTitle("Waqas");
+//		report.config().setReportName("Cucumber Maven Project");
+//		report.config().setTheme(Theme.STANDARD);
+//
+//		ExtentReports extent = new ExtentReports();
+//		extent.attachReporter(report);
+//		extent.setSystemInfo("Application", "Class");
+//		extent.setSystemInfo("Operating System", System.getProperty("os.name"));
+//		extent.setSystemInfo("User Name", System.getProperty("user.name"));
+//
+//		ExtentTest logger = extent.createTest("Login Test");
+//		logger.log(Status.INFO, "login to Salesforce");
+//		logger.log(Status.PASS, "login Verified");
+//		extent.flush();
+//	}
 }
