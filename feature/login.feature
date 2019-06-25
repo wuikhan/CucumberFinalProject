@@ -1,4 +1,4 @@
-Feature: Test Login functionaility	
+Feature: Test Login functionaility
   The user should be able to login using valid credentials
 
   Scenario: Login using valid credentials
@@ -9,3 +9,16 @@ Feature: Test Login functionaility
     And I enter password
     When I click login button
     Then I should see log out
+    And I quit
+    And I generate the report
+
+  Scenario: Login using Invalid credentials
+    Given I open chrome browser
+    When I go to the homepage
+    Then I should see logo
+    And I enter username
+    And I enter password
+    When I click login button
+    Then I should see log out
+    And I quit
+    And I generate the report

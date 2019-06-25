@@ -6,6 +6,11 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 
+import com.aventstack.extentreports.ExtentReports;
+import com.aventstack.extentreports.ExtentTest;
+import com.aventstack.extentreports.Status;
+import com.aventstack.extentreports.reporter.ExtentHtmlReporter;
+
 import cucumber.api.java.en.Given;
 import cucumber.api.java.en.Then;
 import cucumber.api.java.en.When;
@@ -17,13 +22,14 @@ public class loginTest {
 	public void i_open_chrome_browser() {
 		String OS = System.getProperty("os.name").toLowerCase();
 		System.out.println(OS);
-		if(OS.equals("mac os x")) {
-		System.out.println(System.getProperty("user.dir"));
-		System.setProperty("webdriver.chrome.driver", System.getProperty("user.dir")+"/Drivers/chromedriver-mac");
-		driver = new ChromeDriver();
+		if (OS.equals("mac os x")) {
+			System.out.println(System.getProperty("user.dir"));
+			System.setProperty("webdriver.chrome.driver", System.getProperty("user.dir") + "/Drivers/chromedriver-mac");
+			driver = new ChromeDriver();
 		} else {
 			System.out.println(System.getProperty("user.dir"));
-			System.setProperty("webdriver.chrome.driver", System.getProperty("user.dir")+"/Drivers/chromedriver-win.exe");
+			System.setProperty("webdriver.chrome.driver",
+					System.getProperty("user.dir") + "/Drivers/chromedriver-win.exe");
 			driver = new ChromeDriver();
 		}
 	}
@@ -58,9 +64,29 @@ public class loginTest {
 	@Then("^I should see log out$")
 	public void i_should_see_log_out() throws InterruptedException {
 		Thread.sleep(3000);
-		String  setupText = driver.findElement(By.xpath("//a[@title='Setup']")).getText();
+		String setupText = driver.findElement(By.xpath("//a[@title='Setup']")).getText();
 		System.out.println(setupText);
 		assertEquals(setupText, "Setup");
 	}
+
+	@Then("^I quit$")
+	public void i_quit() {
+		driver.close();
+	}
+
+@Then("^I generate the report$")
+public void i_generate_the_report()  {
+	ExtentHtmlReporter reporter = new ExtentHtmlReporter("./Reports/AutomationScript.html");
+	ExtentReports extent = new ExtentReports();
+	extent.attachReporter(reporter);
+	ExtentTest logger = extent.createTest("Login Test");
+	logger.log(Status.INFO, "login to Salesforce");
+	logger.log(Status.PASS, "login Verified");
+	extent.flush();
+}
+
+
+
+
 
 }
