@@ -15,7 +15,8 @@ public class loginTest {
 
 	@Given("^I open firefox browser$")
 	public void i_open_firefox_browser() {
-		System.setProperty("webdriver.chrome.driver", "/Users/waqaskhan/Desktop/JARs/chromedriver");
+		System.out.println(System.getProperty("user.dir"));
+		System.setProperty("webdriver.chrome.driver", System.getProperty("user.dir")+"/Drivers/chromedriver");
 		driver = new ChromeDriver();
 	}
 
