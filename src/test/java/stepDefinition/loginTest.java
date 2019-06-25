@@ -22,7 +22,8 @@ public class loginTest {
 
 	@When("^I go to the homepage$")
 	public void i_go_to_the_homepage() {
-		driver.get("https://login.salesforce.com/");
+		String url = "https://login.salesforce.com/";
+		driver.get(url);
 	}
 
 	@Then("^I should see logo$")
@@ -47,9 +48,11 @@ public class loginTest {
 	}
 
 	@Then("^I should see log out$")
-	public void i_should_see_log_out() {
-		boolean isLoggedIn = driver.findElement(By.xpath("//a[@title='Setup']")).isDisplayed();
-		assertEquals(isLoggedIn, true);
+	public void i_should_see_log_out() throws InterruptedException {
+		Thread.sleep(3000);
+		String  setupText = driver.findElement(By.xpath("//a[@title='Setup']")).getText();
+		System.out.println(setupText);
+		assertEquals(setupText, "Setup");
 	}
 
 }
