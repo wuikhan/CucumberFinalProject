@@ -10,4 +10,3 @@ Feature: Test Login functionaility
     When I click login button
     Then I should see log out
     And I quit
-    #And I generate the report

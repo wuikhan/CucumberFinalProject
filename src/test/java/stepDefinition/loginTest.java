@@ -67,23 +67,4 @@ public class loginTest {
 	public void i_quit() {
 		driver.close();
 	}
-
-//	@Then("^I generate the report$")
-//	public void i_generate_the_report() {
-//		ExtentHtmlReporter report = new ExtentHtmlReporter("./Reports/AutomationScript.html");
-//		report.config().setDocumentTitle("Waqas");
-//		report.config().setReportName("Cucumber Maven Project");
-//		report.config().setTheme(Theme.STANDARD);
-//
-//		ExtentReports extent = new ExtentReports();
-//		extent.attachReporter(report);
-//		extent.setSystemInfo("Application", "Class");
-//		extent.setSystemInfo("Operating System", System.getProperty("os.name"));
-//		extent.setSystemInfo("User Name", System.getProperty("user.name"));
-//
-//		ExtentTest logger = extent.createTest("Login Test");
-//		logger.log(Status.INFO, "login to Salesforce");
-//		logger.log(Status.PASS, "login Verified");
-//		extent.flush();
-//	}
 }
