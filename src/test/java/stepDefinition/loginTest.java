@@ -13,8 +13,8 @@ import cucumber.api.java.en.When;
 public class loginTest {
 	WebDriver driver;
 
-	@Given("^I open firefox browser$")
-	public void i_open_firefox_browser() {
+	@Given("^I open chrome browser$")
+	public void i_open_chrome_browser() {
 		String OS = System.getProperty("os.name").toLowerCase();
 		System.out.println(OS);
 		if(OS.equals("mac os x")) {
