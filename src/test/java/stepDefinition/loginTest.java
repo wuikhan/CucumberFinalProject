@@ -6,6 +6,11 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 
+import com.aventstack.extentreports.ExtentReports;
+import com.aventstack.extentreports.ExtentTest;
+import com.aventstack.extentreports.Status;
+import com.aventstack.extentreports.reporter.ExtentHtmlReporter;
+import com.aventstack.extentreports.reporter.configuration.Theme;
 
 import cucumber.api.java.en.Given;
 import cucumber.api.java.en.Then;
@@ -66,5 +71,24 @@ public class loginTest {
 	@Then("^I quit$")
 	public void i_quit() {
 		driver.close();
+	}
+	@Then("^I generate the report$")
+	public void i_generate_the_report()  {
+	  ExtentHtmlReporter report = new ExtentHtmlReporter("./Reports/AutomationReport.html");
+	  report.config().setDocumentTitle("Cucumber Mavem Project");
+	  report.config().setReportName("Regression Suite");
+	  report.config().setTheme(Theme.STANDARD);
+	  
+	  ExtentReports extent = new ExtentReports();
+	  extent.attachReporter(report);
+	  extent.setSystemInfo("Application", "Class");
+	  extent.setSystemInfo("Operating System", System.getProperty("os.name"));
+	  extent.setSystemInfo("Username", System.getProperty("user.name"));
+	  
+	  ExtentTest logger = extent.createTest("Login Test");
+	  logger.log(Status.INFO, "Login to Salesforce");
+	  logger.log(Status.PASS, "Login Verified");
+	  extent.flush();
+	  
 	}
 }
