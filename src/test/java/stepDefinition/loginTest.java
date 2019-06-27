@@ -17,7 +17,7 @@ import cucumber.api.java.en.Then;
 import cucumber.api.java.en.When;
 
 public class loginTest {
-	WebDriver driver;
+	public static WebDriver driver;
 
 	@Given("^I open chrome browser$")
 	public void i_open_chrome_browser() {
